@@ -621,6 +621,9 @@ typedef struct global_State {
   MRef jit_base;	/* Current JIT code L->base or NULL. */
   MRef ctype_state;	/* Pointer to C type state. */
   GCRef gcroot[GCROOT_MAX];  /* GC roots. */
+  const char *cwd; /* @Voidious: Working directory, for BerryBots security. */
+  void *printer; /* @Voidious: BerryBots overrides print so it can redirect
+                               each Lua state's output to the right place. */
 } global_State;
 
 #define mainthread(g)	(&gcref(g->mainthref)->th)

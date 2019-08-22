@@ -19,13 +19,18 @@ static const luaL_Reg lj_lib_load[] = {
   { "",			luaopen_base },
   { LUA_LOADLIBNAME,	luaopen_package },
   { LUA_TABLIBNAME,	luaopen_table },
-  { LUA_IOLIBNAME,	luaopen_io },
-  { LUA_OSLIBNAME,	luaopen_os },
+  // @Voidious: Disable I/O for BerryBots security. Only allow dofile,
+  //            loadfile, and require from below base directory.
+  // { LUA_IOLIBNAME,	luaopen_io },
+  // @Voidious: Disable OS library for BerryBots security.
+  // { LUA_OSLIBNAME,	luaopen_os },
   { LUA_STRLIBNAME,	luaopen_string },
   { LUA_MATHLIBNAME,	luaopen_math },
-  { LUA_DBLIBNAME,	luaopen_debug },
+  // @Voidious: Disable debug library for BerryBots security.
+  // { LUA_DBLIBNAME,	luaopen_debug },
   { LUA_BITLIBNAME,	luaopen_bit },
-  { LUA_JITLIBNAME,	luaopen_jit },
+  // @Voidious: Disable JIT control library for BerryBots security.
+  // { LUA_JITLIBNAME,	luaopen_jit },
   { NULL,		NULL }
 };
 

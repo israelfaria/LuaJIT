@@ -119,6 +119,36 @@ LUA_API const lua_Number *lua_version(lua_State *L)
   return &version;
 }
 
+// @Voidious: Set working directory so BerryBots can restrict file access to
+//            anything beneath that directory.
+LUA_API void lua_setcwd (lua_State *L, const char *cwd)
+{
+  global_State *g = G(L);
+  g->cwd = cwd;
+}
+
+// @Voidious: Get working directory.
+LUA_API const char *lua_getcwd (lua_State *L)
+{
+  global_State *g = G(L);
+  return g->cwd;
+}
+
+// @Voidious: Set a printer so BerryBots can redirect each Lua state's output to
+//            the right place.
+LUA_API void lua_setprinter (lua_State *L, void *printer)
+{
+  global_State *g = G(L);
+  g->printer = printer;
+}
+
+// @Voidious: Get printer.
+LUA_API void *lua_getprinter (lua_State *L)
+{
+  global_State *g = G(L);
+  return g->printer;
+}
+
 /* -- Stack manipulation -------------------------------------------------- */
 
 LUA_API int lua_gettop(lua_State *L)
@@ -1289,4 +1319,3 @@ LUA_API void lua_setallocf(lua_State *L, lua_Alloc f, void *ud)
   g->allocd = ud;
   g->allocf = f;
 }
-
